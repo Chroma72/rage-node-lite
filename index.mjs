@@ -42,10 +42,10 @@ io.onConnection(channel => {
   
   // client disconnected
   channel.onDisconnect(reason => {
-    delete players[guid];
-    channel.raw.broadcast.emit(0x66, guid, { reliable: true });
+    delete clients[channel.id];
+    //channel.raw.broadcast.emit(0x66, guid, { reliable: true });
     let code = reason.toUpperCase()
-    clog(`Player [${guid}] left the arena. [${code}]`)
+    clog(`Player [${channel.id}] left the arena. [${code}]`)
   })
 
 })
