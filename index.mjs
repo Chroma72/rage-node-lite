@@ -14,10 +14,13 @@ app.listen(3000, () => {
   clog(`Web server listening on port 3000.`)
 })
 
+let clients = {}
 
 const io = geckos()
 io.listen()
 io.onConnection(channel => {
+  
+  clients[channel.id] = { id: channel.id }
   
   channel.onRaw(data => {
     
