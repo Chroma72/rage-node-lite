@@ -39,7 +39,9 @@ io.onConnection(channel => {
   
 })
   
+
   
+// console.log replacement with date and time
 function clog(str) {
   let now = new Date()
   let dateTime = date.format(now, 'YYYY-MM-DD[@]HH:mm:ss')
