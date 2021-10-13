@@ -19,20 +19,32 @@ const io = geckos()
 io.listen()
 io.onConnection(channel => {
   
-  io.onRaw(data => {
+  channel.onRaw(data => {
     
     let packet = Packet.fromClientData(data)
     
     switch (packet.opcode) {
+        
       case 0x01:
         break;
         
       case 0x02:
         break;
         
-      default:   
+      default:
+        
     }
-  }
+
+  })
+  
+  // client disconnected
+  channel.onDisconnect(reason => {
+    delete players[guid];
+    channel.raw.broadcast.emit(0x66, guid, { reliable: true });
+    let code = reason.toUpperCase()
+    clog(`Player [${guid}] left the arena. [${code}]`)
+  })
+
 })
   
 
