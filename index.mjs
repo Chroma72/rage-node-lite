@@ -2,7 +2,7 @@ import express from 'express'
 import path from 'path'
 import geckos from '@geckos.io/server'
 import date from 'date-and-time'
-import Packet from './public/js/mod/packet.mjs'
+import Packet from './shared/packet.mjs'
 
 const __dirname = path.resolve()
 const app = express()
@@ -24,7 +24,7 @@ io.onConnection(channel => {
   
   channel.onRaw(data => {
     
-    let packet = Packet.fromClientData(data)
+    let packet = Packet.fromData(data)
     
     switch (packet.opcode) {
         
