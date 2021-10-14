@@ -20,4 +20,7 @@ export default Packet {
     return this.view.buffer
   }
   
+  writeUint8(offset, value..) {
+  
+  }
 }
